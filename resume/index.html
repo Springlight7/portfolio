@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#F7F4ED" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+    <title>刘凌旭 · 简历</title>
+    <meta name="description" content="刘凌旭的简历：西北大学理论经济学硕士（2027 届），6 项政企委托课题，政策研究、实地调研与计量建模。" />
+    <meta name="author" content="刘凌旭" />
+
+    <!--
+      与作品集同策略：只发给特定的人看，不需要被搜索引擎检索到。
+      用 meta 而不是 robots.txt —— 爬虫只读「域名根目录」的 /robots.txt，
+      本站挂在 <用户名>.github.io/<仓库名>/resume/ 下，根目录不归我们管。
+    -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+
+    <!--
+      字体由 tools/resume-fonts.mjs 在构建时按「本页真实用到的字」做子集，
+      输出到 dist/resume/fonts.css。构建时没联网也不会崩：这一行 404 之后
+      自动掉到下面的系统字体栈，版面依然成立。
+    -->
+    <link rel="stylesheet" href="./fonts.css" />
+
+    <style>
+      /* ==========================================================================
+         宋版纸感 · 简历版
+         设计约束（改之前先读，否则很容易把它改回「AI 味」）：
+           1. 三层字号必须拉开：姓名 / 章节题 / 条目题 / 正文，各自在字重与颜色上也不同。
+           2. 朱砂 #9C3A2B 是全局唯一的彩色，用量压在 5% 以内 —— 章节序号、极少数强调。
+              一旦开始用它画边框、铺底色，贵气立刻变土气。
+           3. 宋体只上标题与条目题，正文走黑体。小字号宋体在屏幕上发虚。
+           4. 动效只有一次性的入场淡入，简历不需要滚动叙事。
+         ========================================================================== */
+
+      :root {
+        --paper: #f7f4ed;
+        --paper-2: #f1ece2;
+        --ink: #1b1917;
+        --ink-2: #4a453d;
+        --ink-3: #8c857a;
+        --rule: #dcd5c7;
+        --rule-soft: #e8e2d6;
+        --cinnabar: #9c3a2b;
+
+        --serif: 'Noto Serif SC', 'Songti SC', 'Source Han Serif SC', SimSun, serif;
+        --sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+        --latin: 'Playfair Display', 'Times New Roman', Georgia, serif;
+
+        --measure: 940px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-weight: 300;
+        font-size: 14.5px;
+        line-height: 1.85;
+        letter-spacing: 0.01em;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      /* 纸的质地。极淡的噪点，压住米白底的「塑料感」。
+         打印时会被关掉（喷墨打印噪点会变脏）。 */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.028;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+        max-width: var(--measure);
+        margin: 0 auto;
+        padding: 92px 72px 104px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px solid var(--rule);
+        transition: border-color 0.2s ease, color 0.2s ease;
+      }
+
+      a:hover {
+        color: var(--cinnabar);
+        border-bottom-color: var(--cinnabar);
+      }
+
+      /* ---------------------------------------------------------------- 页头 */
+
+      .masthead {
+        position: relative;
+      }
+
+      .name {
+        margin: 0;
+        font-family: var(--serif);
+        font-weight: 300;
+        font-size: 56px;
+        line-height: 1.1;
+        letter-spacing: 0.1em;
+        /* 向右撑出字距，视觉上重新居中 */
+        text-indent: 0.1em;
+      }
+
+      .name-latin {
+        display: block;
+        margin-top: 14px;
+        font-family: var(--latin);
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.46em;
+        text-indent: 0.46em;
+        color: var(--ink-3);
+      }
+
+      /* 姓名下那道朱砂短横 —— 全局只有这一笔「印章感」的装饰 */
+      .seal-rule {
+        width: 34px;
+        height: 2px;
+        margin: 26px 0 24px;
+        background: var(--cinnabar);
+      }
+
+      .tagline {
+        margin: 0;
+        font-family: var(--serif);
+        font-weight: 400;
+        font-size: 17px;
+        letter-spacing: 0.04em;
+      }
+
+      .tagline em {
+        font-style: normal;
+        color: var(--cinnabar);
+      }
+
+      .facts {
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+        color: var(--ink-2);
+        font-size: 13.5px;
+      }
+
+      .facts li {
+        display: inline;
+      }
+
+      .facts li + li::before {
+        content: '·';
+        margin: 0 0.7em;
+        color: var(--ink-3);
+      }
+
+      /* 关键数字条：细线夹住，靠间距而不是卡片撑体积 */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 40px;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .stat {
+        padding: 22px 4px 20px;
+      }
+
+      .stat + .stat {
+        border-left: 1px solid var(--rule-soft);
+        padding-left: 26px;
+      }
+
+      .stat b {
+        display: block;
+        font-family: var(--latin);
+        font-weight: 400;
+        font-size: 27px;
+        line-height: 1.2;
+        letter-spacing: 0.01em;
+      }
+
+      .stat b i {
+        font-style: normal;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        color: var(--ink-3);
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 5px;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        color: var(--ink-3);
+      }
+
+      /* ---------------------------------------------------------------- 章节 */
+
+      section {
+        margin-top: 62px;
+      }
+
+      .sec-head {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        margin-bottom: 30px;
+      }
+
+      .sec-num {
+        font-family: var(--serif);
+        font-weight: 400;
+        font-size: 15px;
+        letter-spacing: 0.1em;
+        color: var(--cinnabar);
+      }
+
+      .sec-title {
+        margin: 0;
+        font-family: var(--serif);
+        font-weight: 400;
+        font-size: 20px;
+        letter-spacing: 0.16em;
+        white-space: nowrap;
+      }
+
+      /* 章节题右侧那道延伸出去的细线，是版面节奏的主要来源 */
+      .sec-head::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--rule);
+        transform: translateY(-4px);
+      }
+
+      .sec-note {
+        font-size: 12.5px;
+        letter-spacing: 0.06em;
+        color: var(--ink-3);
+        white-space: nowrap;
+      }
+
+      /* ---------------------------------------------------------------- 条目 */
+
+      /* 左时间 / 右内容。简历的可扫读性八成来自这一列对齐。 */
+      .entry {
+        display: grid;
+        grid-template-columns: 138px 1fr;
+        gap: 0 34px;
+      }
+
+      .entry + .entry {
+        margin-top: 30px;
+        padding-top: 30px;
+        border-top: 1px solid var(--rule-soft);
+      }
+
+      .entry-when {
+        font-family: var(--latin);
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0.04em;
+        color: var(--ink-3);
+        padding-top: 3px;
+      }
+
+      .entry-when span {
+        display: block;
+        font-family: var(--sans);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+      }
+
+      .entry-title {
+        margin: 0;
+        font-family: var(--serif);
+        font-weight: 400;
+        font-size: 16.5px;
+        line-height: 1.55;
+        letter-spacing: 0.03em;
+      }
+
+      .entry-org {
+        margin: 7px 0 0;
+        font-size: 13px;
+        color: var(--ink-2);
+      }
+
+      .entry-org .sep {
+        margin: 0 0.5em;
+        color: var(--ink-3);
+      }
+
+      .tag {
+        display: inline-block;
+        margin-left: 10px;
+        padding: 0 6px;
+        border: 1px solid var(--rule);
+        font-family: var(--sans);
+        font-size: 10.5px;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        line-height: 17px;
+        vertical-align: 2px;
+        color: var(--ink-2);
+      }
+
+      .entry-body {
+        margin: 11px 0 0;
+        color: var(--ink-2);
+      }
+
+      /* 破折号做项目符号，比圆点更像印刷品 */
+      ul.points {
+        margin: 11px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      ul.points li {
+        position: relative;
+        padding-left: 20px;
+        color: var(--ink-2);
+      }
+
+      ul.points li + li {
+        margin-top: 5px;
+      }
+
+      ul.points li::before {
+        content: '—';
+        position: absolute;
+        left: 0;
+        color: var(--ink-3);
+      }
+
+      ul.points li b {
+        font-weight: 400;
+        color: var(--ink);
+      }
+
+      .scores {
+        margin: 9px 0 0;
+        font-size: 13px;
+        color: var(--ink-2);
+      }
+
+      .courses {
+        margin: 4px 0 0;
+        font-size: 12.5px;
+        line-height: 1.8;
+        color: var(--ink-3);
+      }
+
+      .courses span {
+        color: var(--ink-2);
+        letter-spacing: 0.08em;
+      }
+
+      /* 技能：标签 + 内容，两列对齐 */
+      .skills {
+        display: grid;
+        grid-template-columns: 138px 1fr;
+        gap: 14px 34px;
+      }
+
+      .skills dt {
+        font-family: var(--serif);
+        font-weight: 400;
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        color: var(--ink-2);
+      }
+
+      .skills dd {
+        margin: 0;
+        color: var(--ink-2);
+      }
+
+      /* ---------------------------------------------------------------- 页脚 */
+
+      .colophon {
+        margin-top: 76px;
+        padding-top: 30px;
+        border-top: 1px solid var(--rule);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 28px;
+        align-items: baseline;
+        font-size: 13px;
+        color: var(--ink-2);
+      }
+
+      .colophon .spacer {
+        flex: 1;
+      }
+
+      .colophon .quiet {
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        color: var(--ink-3);
+      }
+
+      /* 邮箱：默认打码，点一下展开；打印时直接出全文，方便 HR 用 */
+      .email {
+        font-family: var(--latin);
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0.04em;
+        color: var(--ink);
+        background: none;
+        border: 0;
+        border-bottom: 1px solid var(--rule);
+        padding: 0 0 1px;
+        font-size: 13.5px;
+        cursor: pointer;
+        font-family: var(--sans);
+        transition: color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .email:hover {
+        color: var(--cinnabar);
+        border-bottom-color: var(--cinnabar);
+      }
+
+      .email .hint {
+        margin-left: 0.5em;
+        font-size: 11.5px;
+        color: var(--ink-3);
+      }
+
+      .email-full {
+        display: none;
+      }
+
+      /* 打印按钮：屏幕上唯一一个「控件」，打印时消失 */
+      .print-btn {
+        position: fixed;
+        right: 26px;
+        bottom: 26px;
+        z-index: 10;
+        padding: 11px 20px;
+        font-family: var(--sans);
+        font-size: 12.5px;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        color: var(--paper);
+        background: var(--ink);
+        border: 0;
+        border-radius: 2px;
+        cursor: pointer;
+        box-shadow: 0 6px 22px rgba(27, 25, 23, 0.18);
+        transition: background 0.2s ease, transform 0.2s ease;
+      }
+
+      .print-btn:hover {
+        background: var(--cinnabar);
+        transform: translateY(-1px);
+      }
+
+      /* ---------------------------------------------------------------- 入场 */
+
+      .page > * {
+        opacity: 0;
+        animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+      }
+
+      .page > *:nth-child(1) { animation-delay: 0.02s; }
+      .page > *:nth-child(2) { animation-delay: 0.09s; }
+      .page > *:nth-child(3) { animation-delay: 0.16s; }
+      .page > *:nth-child(4) { animation-delay: 0.23s; }
+      .page > *:nth-child(5) { animation-delay: 0.3s; }
+      .page > *:nth-child(6) { animation-delay: 0.37s; }
+      .page > *:nth-child(7) { animation-delay: 0.44s; }
+      .page > *:nth-child(8) { animation-delay: 0.5s; }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ---------------------------------------------------------------- 窄屏 */
+
+      /* 只限屏幕。A4 的可用宽度是 794px，不写 screen 的话打印会掉进这个断点，
+         印出来变成手机版单列 —— 时间另起一行、数字条拆成 2×2，很业余。 */
+      @media screen and (max-width: 820px) {
+        .page {
+          padding: 56px 26px 72px;
+        }
+
+        .name {
+          font-size: 40px;
+        }
+
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .stat:nth-child(odd) {
+          border-left: 0;
+          padding-left: 4px;
+        }
+
+        .stat:nth-child(n + 3) {
+          border-top: 1px solid var(--rule-soft);
+        }
+
+        .entry,
+        .skills {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+
+        .entry-when {
+          padding-top: 0;
+        }
+
+        .entry-when span {
+          display: inline;
+          margin-left: 0.6em;
+        }
+
+        .entry + .entry {
+          margin-top: 26px;
+          padding-top: 26px;
+        }
+
+        /* 章节题右边的补充说明（如「政府与国企委托课题 5 项 · 倒序」）必须能换行。
+           它是 nowrap 的，不处理会把版面撑破 —— 移动端 Chrome 检测到横向溢出后，
+           会把整个布局视口撑宽再把页面缩下去，结果就是手机上所有字莫名变小。 */
+        .sec-head {
+          flex-wrap: wrap;
+        }
+
+        .sec-head::after {
+          order: 1;
+        }
+
+        .sec-note {
+          order: 2;
+          flex-basis: 100%;
+          margin-top: 3px;
+          white-space: normal;
+        }
+
+        section {
+          margin-top: 48px;
+        }
+
+        .print-btn {
+          right: 16px;
+          bottom: 16px;
+        }
+      }
+
+      /* ---------------------------------------------------------------- 打印 */
+
+      @page {
+        size: A4;
+        margin: 13mm 15mm 12mm;
+      }
+
+      @media print {
+        :root {
+          --paper: #fff;
+          --ink: #000;
+          --ink-2: #222;
+          --ink-3: #555;
+          --rule: #bbb;
+          --rule-soft: #ddd;
+          --cinnabar: #7d2a1e;
+        }
+
+        body {
+          background: #fff;
+          font-size: 10pt;
+          line-height: 1.62;
+        }
+
+        /* 喷墨打印噪点会发脏，关掉 */
+        body::before {
+          display: none;
+        }
+
+        .page {
+          max-width: none;
+          padding: 0;
+        }
+
+        /* 打印时不要入场动画，否则可能打出半透明的页面 */
+        .page > * {
+          opacity: 1 !important;
+          animation: none !important;
+        }
+
+        .print-btn {
+          display: none !important;
+        }
+
+        /* 条目不要被切开 —— 一条经验断在两页上最难读 */
+        .entry,
+        .skills > *,
+        .sec-head {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        .sec-head {
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+
+        /* 纸上没有「窄屏」这回事，两列必须留住 —— 时间列收窄给正文让位。
+           A4 可用宽只有 680px，还按屏幕上的 138px 会把正文挤成 30 字一行。 */
+        .entry,
+        .skills {
+          grid-template-columns: 104px 1fr;
+          gap: 0 20px;
+        }
+
+        .skills {
+          gap: 10px 20px;
+        }
+
+        .entry + .entry {
+          margin-top: 11pt;
+          padding-top: 11pt;
+        }
+
+        ul.points {
+          margin-top: 5pt;
+        }
+
+        ul.points li + li {
+          margin-top: 1.5pt;
+        }
+
+        .colophon {
+          margin-top: 14pt;
+          padding-top: 9pt;
+        }
+
+        /* ── 纸上密度 ─────────────────────────────────────────────────
+           屏幕上有滚动条兜着，纸只有三张。下面这组数值是拿 A4 实测
+           调出来的：改大任何一个，都会多出一页。
+           目标 ≤3 页（当前实测 3 页）。 */
+        section {
+          margin-top: 14pt;
+        }
+
+        .sec-head {
+          margin-bottom: 15pt;
+        }
+
+        .name {
+          font-size: 22pt;
+          letter-spacing: 0.12em;
+        }
+
+        .name-latin {
+          margin-top: 6px;
+          font-size: 9px;
+        }
+
+        .seal-rule {
+          margin: 11px 0 10px;
+        }
+
+        .tagline {
+          font-size: 13pt;
+        }
+
+        .facts {
+          margin-top: 5px;
+          font-size: 10pt;
+        }
+
+        .stats {
+          margin-top: 18px;
+        }
+
+        .stat {
+          padding: 9px 4px 8px;
+        }
+
+        .stat + .stat {
+          padding-left: 16px;
+        }
+
+        .stat b {
+          font-size: 18px;
+        }
+
+        .stat b i {
+          font-size: 10px;
+        }
+
+        .stat span {
+          margin-top: 2px;
+          font-size: 9.5px;
+        }
+
+        .scores,
+        .courses {
+          margin-top: 3pt;
+        }
+
+        .entry-org {
+          margin-top: 3pt;
+        }
+
+        a {
+          border-bottom: 0;
+        }
+
+        /* 打印版直接给完整邮箱：纸是给 HR 看的，打码没有意义 */
+        .email {
+          border-bottom: 0;
+          cursor: default;
+        }
+
+        .email-mask,
+        .email .hint {
+          display: none !important;
+        }
+
+        .email-full {
+          display: inline !important;
+        }
+      }
+
+      /* 放在样式表最末尾：一条统管规则覆盖全站动画与过渡。
+         用 .01ms 而不是 0s —— 某些浏览器对 0s 会连 animationend 都不触发。 */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="page">
+      <!-- ============================================================ 页头 -->
+      <header class="masthead">
+        <h1 class="name">刘凌旭</h1>
+        <span class="name-latin">LIU LINGXU</span>
+        <div class="seal-rule"></div>
+        <p class="tagline">经济学硕士 · <em>政策研究</em> / <em>计量分析</em></p>
+        <ul class="facts">
+          <li>西北大学 · 2027 届</li>
+          <li>陕西 · 西安</li>
+          <li>求职中：银行 / 国企 / 政策研究</li>
+          <li>2026.07 起可实习</li>
+        </ul>
+
+        <div class="stats">
+          <div class="stat"><b>3.53<i> / 4.0</i></b><span>硕士绩点</span></div>
+          <div class="stat"><b>6<i> 项</i></b><span>政企委托课题</span></div>
+          <div class="stat"><b>4,082<i> 份</i></b><span>政策文本处理</span></div>
+          <div class="stat"><b>99.68<i> 万元</i></b><span>中标项目金额</span></div>
+        </div>
+      </header>
+
+      <!-- ======================================================== 一、教育 -->
+      <section id="education">
+        <div class="sec-head">
+          <span class="sec-num">一</span>
+          <h2 class="sec-title">教育背景</h2>
+        </div>
+
+        <div class="entry">
+          <div class="entry-when">2024.09 – 2027.06<span>预计毕业</span></div>
+          <div>
+            <h3 class="entry-title">西北大学<span class="tag">211</span></h3>
+            <p class="entry-org">硕士 · 理论经济学（人口资源与环境经济学）</p>
+            <p class="scores">绩点 <b>3.53 / 4.0</b> · 加权平均分 85.40</p>
+            <p class="courses">
+              <span>核心课程</span>　中级计量经济学 / 数理经济学 / 经济博弈论 / 现代发展经济学 /
+              人口·资源与环境经济学专题研究
+            </p>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-when">2020.09 – 2024.06</div>
+          <div>
+            <h3 class="entry-title">西北大学<span class="tag">211</span></h3>
+            <p class="entry-org">本科 · 经济统计学</p>
+            <p class="scores">平均分 80.94 / 100</p>
+            <p class="courses">
+              <span>核心课程</span>　计量经济学 / 概率论与数理统计 / 多元统计分析 / 时间序列分析 /
+              统计学
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== 二、实习 -->
+      <section id="internship">
+        <div class="sec-head">
+          <span class="sec-num">二</span>
+          <h2 class="sec-title">实习经历</h2>
+        </div>
+
+        <div class="entry">
+          <div class="entry-when">2026.07 – 2026.08</div>
+          <div>
+            <h3 class="entry-title">中国建设银行 · 南大街支行</h3>
+            <p class="entry-org">营业网点实习生</p>
+            <ul class="points">
+              <li>在客户经理带教下接触现金与非现金两大类业务，学习信用卡办理、贷款业务等零售信贷流程。</li>
+              <li>参与对法院等外部机构的司法协查对接与协调，了解授权、凭证与留痕上的合规要求。</li>
+              <li>协助个人金融部与普惠金融板块进行业务材料整理、归档与台账管理，建立对网点运营及零售、普惠业务条线的整体认知。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== 三、项目 -->
+      <section id="projects">
+        <div class="sec-head">
+          <span class="sec-num">三</span>
+          <h2 class="sec-title">项目经历</h2>
+          <span class="sec-note">政府与国企委托课题 5 项 · 学科竞赛 1 项 · 倒序</span>
+        </div>
+
+        <div class="entry">
+          <div class="entry-when">2026.03 – 2026.12</div>
+          <div>
+            <h3 class="entry-title">关中输变电工程建设与关中城市群经济发展评估建模</h3>
+            <p class="entry-org">
+              国网西安环保中心<span class="sep">·</span>西北大学<span class="sep">·</span>委托课题｜投标与建模
+            </p>
+            <ul class="points">
+              <li>全程参与项目投标，<b>独立完成《项目研究思路》与技术服务方案撰写，助力项目中标</b>。</li>
+              <li>立足「双碳」战略与新型电力系统背景，构建「压力—状态—响应」耦合协调度指标体系与计量分析框架。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-when">2026.01 – 2026.03</div>
+          <div>
+            <h3 class="entry-title">榆林市「十五五」红十字事业发展规划编制</h3>
+            <p class="entry-org">
+              榆林市红十字会<span class="sep">·</span>西北大学<span class="sep">·</span>政府委托｜规划编制
+            </p>
+            <ul class="points">
+              <li>独立设计调研方案并参与实地调研，面向政府部门及基层红十字会开展座谈，系统梳理「三救三献」业务体系。</li>
+              <li><b>独立承担规划纲要第三、四章等主体章节撰写。</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-when">2026.01 – 2026.02</div>
+          <div>
+            <h3 class="entry-title">融资担保公司防范化解业务风险路径研究</h3>
+            <p class="entry-org">
+              榆林市中小企业融资担保有限责任公司<span class="sep">·</span>西北大学<span class="sep">·</span>国企委托｜风险研究
+            </p>
+            <ul class="points">
+              <li>独立撰写「业务风险成因」章节，从外部环境冲击与内部管理短板双维度解构担保业务风险生成机理。</li>
+              <li><b>作为核心统筹人指导团队分工撰写，承担全篇统稿与学术规范把关，通过验收。</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-when">2025.11 – 2025.12</div>
+          <div>
+            <h3 class="entry-title">榆林市中小企业融资担保「十五五」规划纲要</h3>
+            <p class="entry-org">
+              榆林市中小企业融资担保有限责任公司<span class="sep">·</span>西北大学<span class="sep">·</span>国企委托｜规划编制
+            </p>
+            <ul class="points">
+              <li>参与两次实地调研，对公司员工、在保中小企业及合作银行三方开展深度访谈取证。</li>
+              <li>独立承担「完善公司治理」章节，围绕企业文化、治理架构、业务转型三个维度构建治理优化方案。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-when">2025.05 – 2025.08</div>
+          <div>
+            <h3 class="entry-title">「十五五」时期全省经济社会发展形势和收支形势展望</h3>
+            <p class="entry-org">
+              陕西省财政厅委托课题<span class="sep">·</span>西北大学<span class="sep">·</span>省级委托｜形势研究
+            </p>
+            <ul class="points">
+              <li>负责项目后期统稿，统一各章节数据口径与文字表述，确保全篇数据可追溯、表述无冲突。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-when">2026<span>第十二届</span></div>
+          <div>
+            <h3 class="entry-title">全国大学生统计建模大赛<span class="tag">校级三等奖</span></h3>
+            <p class="entry-org">参赛作品《宏观政策取向一致性测算及其经济增长效应研究》</p>
+            <ul class="points">
+              <li>独立设计「政策文本提取—多维指数合成—面板实证检验」三阶段框架，用 Python 完成全流程实现。</li>
+              <li>提取 <b>4,082 份政府工作报告</b>文本，以熵权法与主成分分析合成政策一致性指数。</li>
+              <li>基于 <b>286 个地级市面板</b>，构建双向固定效应模型检验其对经济增长的效应。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== 四、研究 -->
+      <section id="research">
+        <div class="sec-head">
+          <span class="sec-num">四</span>
+          <h2 class="sec-title">学术研究</h2>
+        </div>
+
+        <div class="entry">
+          <div class="entry-when">2025.09 – 至今<span>硕士学位论文</span></div>
+          <div>
+            <h3 class="entry-title">《全国统一大市场建设能否破解新能源汽车产业内卷式竞争》</h3>
+            <ul class="points">
+              <li>系统精读中英文文献 <b>97 篇</b>、梳理相关产业政策文件 <b>57 条</b>，定位研究缺口并建立三线政策库。</li>
+              <li>基于 CSMAR 与城市数据库构建「企业—城市—年份」三维面板（<b>300 个地级市，1990–2023</b>）。</li>
+              <li>从盈利能力、资产周转、研发强度、收益波动四维设计内卷程度指标；以相对价格法构建市场一体化指数，并用 1990–1992 年历史交通可达性构造工具变量。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-when">2023.10 – 2024.05<span>本科毕业论文</span></div>
+          <div>
+            <h3 class="entry-title">《西方消费函数在我国的适用性研究》</h3>
+            <ul class="points">
+              <li>整理 1980–2023 年城乡居民人均可支配收入与消费支出数据，按「入世前后」与「城乡」切分为四个子样本分组检验。</li>
+              <li>独立完成 ADF 平稳性检验、EG 两步协整检验、误差修正模型（ECM）与格兰杰因果检验。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== 五、技能 -->
+      <section id="skills">
+        <div class="sec-head">
+          <span class="sec-num">五</span>
+          <h2 class="sec-title">技能与证书</h2>
+        </div>
+
+        <dl class="skills">
+          <dt>数据分析</dt>
+          <dd>Python（pandas / scikit-learn / linearmodels）、Stata、SPSS、R</dd>
+          <dt>空间分析</dt>
+          <dd>ArcGIS</dd>
+          <dt>办公软件</dt>
+          <dd>Excel 数据分析与可视化、PowerPoint 演示呈现</dd>
+          <dt>语言能力</dt>
+          <dd>大学英语六级（CET-6）</dd>
+        </dl>
+      </section>
+
+      <!-- ============================================================ 页脚 -->
+      <footer class="colophon">
+        <span>
+          邮箱
+          <button
+            class="email"
+            type="button"
+            data-u="934418584"
+            data-d="qq.com"
+            aria-label="显示完整邮箱地址"
+          >
+            <span class="email-mask">93*******@qq.com</span>
+            <span class="email-full"></span>
+            <span class="hint">点击显示</span>
+          </button>
+        </span>
+        <span class="quiet">陕西 · 西安</span>
+        <span class="spacer"></span>
+        <span class="quiet">
+          完整经历与项目细节见作品集
+          <a href="../">springlight7.github.io/portfolio</a>
+        </span>
+      </footer>
+    </main>
+
+    <button class="print-btn" type="button" onclick="window.print()">打印 / 存为 PDF</button>
+
+    <script>
+      /* 邮箱分段存放：静态 HTML 里搜不到一个完整的邮箱串（爬虫只看原始 HTML）。
+         完整地址只在点击时（以及打印前）拼进 DOM。 */
+      ;(function () {
+        var button = document.querySelector('.email')
+        if (!button) return
+
+        var full = button.dataset.u + '@' + button.dataset.d
+        var fullNode = button.querySelector('.email-full')
+        var maskNode = button.querySelector('.email-mask')
+        var hintNode = button.querySelector('.hint')
+
+        /* 打印版要给出完整地址，所以提前填好，只是屏幕上不显示 */
+        if (fullNode) fullNode.textContent = full
+
+        button.addEventListener('click', function () {
+          var shown = fullNode.style.display === 'inline'
+          fullNode.style.display = shown ? '' : 'inline'
+          maskNode.style.display = shown ? '' : 'none'
+          if (hintNode) hintNode.style.display = shown ? '' : 'none'
+          button.setAttribute('aria-label', shown ? '隐藏邮箱地址' : '显示完整邮箱地址')
+          if (!shown) {
+            window.location.href = 'mailto:' + full + '?subject=' + encodeURIComponent('简历联系 · 刘凌旭')
+          }
+        })
+      })()
+    </script>
+  </body>
+</html>
